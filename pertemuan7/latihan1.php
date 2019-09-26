@@ -22,7 +22,7 @@
     <?php foreach ($mahasiswa as $mhs) :?>
       <ul>
         <li>
-          <a href="latihan2.php?nama=<?php echo $mhs["nama"];?>">
+          <a href="latihan2.php?nama=<?php echo $mhs["nama"];?>&nim=<?php echo $mhs["nim"] ?>&prodi=<?php echo $mhs["prodi"]; ?>&email=<?php echo $mhs["email"]; ?>">
             <?php echo $mhs["nama"];?>
           </a>
         </li>
