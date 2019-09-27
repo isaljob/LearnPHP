@@ -1,6 +1,20 @@
 <?php
-  require 'functions.php';
-  $mahasiswa = query("SELECT * FROM mahasiswa"); // function query dari functions.php
+// koneksi ke database
+$conn = mysqli_connect("localhost", "root", "", "phpdasar");
+
+// ambil data dari tabel Mahasiswa
+$result = mysqli_query($conn, "SELECT * FROM mahasiswa");
+
+// ambil data (fetch) mahasiswa dari object result, ada 4 cara:
+// mysqli_fetch_row()  ------> mengembalikan nilai array numerik
+// mysqli_fetch_assoc() -----> mengembalikan nilai array associative
+// mysqli_fetch_array() -----> mengembalikan nilai array numerik dan associative
+// mysqli_fetch_object() ----> mengembalikan nilai object, harus pakai $mhs->nama
+
+// while ($mhs = mysqli_fetch_assoc($result)) {
+//   var_dump($mhs["nama"]);
+// };
+
  ?>
 
 <!DOCTYPE html>
@@ -25,7 +39,7 @@
         </tr>
 
         <?php $i = 1; ?>
-        <?php foreach ( $mahasiswa as $row ) : ?>
+        <?php while($row = mysqli_fetch_assoc($result)) : ?>
         <tr>
           <td><?php echo $i; ?></td>
           <td>
@@ -41,7 +55,7 @@
           <td><?php echo $row["jurusan"]; ?></td>
         </tr>
         <?php $i++; ?>
-      <?php endforeach; ?>
+        <?php endwhile; ?>
     </table>
 
   </body>
